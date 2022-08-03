@@ -8,7 +8,7 @@ namespace TicTacToe
 {
   class Player
   {
-    public string name;
+    public string? name;
     public string piece;
     public bool turn;
     public int score;
@@ -18,6 +18,13 @@ namespace TicTacToe
       name = aName;
       piece = aPiece;
       turn = aTurn;
+    }
+
+    public void promptName()
+    {
+      Console.WriteLine($"{name} please enter your name");
+      name = Console.ReadLine();
+      // Console.WriteLine("test2");
     }
   }
 }
