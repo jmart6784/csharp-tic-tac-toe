@@ -18,13 +18,13 @@ namespace TicTacToe
       name = aName;
       piece = aPiece;
       turn = aTurn;
+      score = aScore;
     }
 
     public void promptName()
     {
       Console.WriteLine($"{name} please enter your name");
       name = Console.ReadLine();
-      // Console.WriteLine("test2");
     }
   }
 }
