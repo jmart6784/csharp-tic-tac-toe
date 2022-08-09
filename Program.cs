@@ -5,8 +5,8 @@
     static void Main(string[] args)
     {
       // 🇽 🅾️ ❌
-      Player player1 = new Player("Player 1", "X", true, 0);
-      Player player2 = new Player("Player 2", "O", false, 0);
+      Player player1 = new Player("Player 1", "🇽", true, 0);
+      Player player2 = new Player("Player 2", "🅾️", false, 0);
       Board board = new Board();
 
       // player1.promptName();
@@ -15,6 +15,7 @@
       Console.WriteLine($"{player1.name} VS {player2.name}");
       board.PrintBoard();
       TakeTurn(player1, board);
+      TakeTurn(player2, board);
     }
 
     static void TakeTurn(Player player, Board board)
@@ -30,11 +31,19 @@
 
       if (legalMoves.Contains(move))
       {
-        board.Place(move, player.piece);
-        board.PrintBoard();
+        if (board.Place(move, player.piece))
+        {
+          board.PrintBoard();
+        }
+        else
+        {
+          Console.WriteLine("That spot is TAKEN!");
+          TakeTurn(player, board);
+        };
       }
       else
       {
+        Console.WriteLine("Invalid move please choose a valid row (1, 2, 3) and a valid column (A, B, C)");
         TakeTurn(player, board);
       }
     }

@@ -30,7 +30,7 @@ namespace TicTacToe
       Console.WriteLine("  A   B   C");
     }
 
-    public void Place(string move, string piece)
+    public bool Place(string move, string piece)
     {
       string[] moveAry = { move.Substring(0, 1), move.Substring(1, 1) };
       Array.Sort(moveAry);
@@ -51,7 +51,15 @@ namespace TicTacToe
         column = 2;
       }
 
-      board[row - 1, column] = piece;
+      if (board[row - 1, column] == " ")
+      {
+        board[row - 1, column] = piece;
+        return true;
+      }
+      else
+      {
+        return false;
+      }
     }
   }
 }
