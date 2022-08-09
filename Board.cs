@@ -9,6 +9,7 @@ namespace TicTacToe
   class Board
   {
     public string[,] board;
+    public string[] legalMoves;
 
     public Board()
     {
@@ -16,6 +17,11 @@ namespace TicTacToe
         {" ", " ", " "},
         {" ", " ", " "},
         {" ", " ", " "}
+      };
+      legalMoves = new string[] {
+        "1a", "1b", "1c", "a1", "b1", "c1",
+        "2a", "2b", "2c", "a2", "b2", "c2",
+        "3a", "3b", "3c", "a3", "b3", "c3",
       };
     }
 
@@ -59,6 +65,30 @@ namespace TicTacToe
       else
       {
         return false;
+      }
+    }
+
+    public void TakeTurn(Player player)
+    {
+      Console.Write($"{player.name} Please take your turn. ");
+      var move = Console.ReadLine();
+
+      if (legalMoves.Contains(move))
+      {
+        if (Place(move, player.piece))
+        {
+          PrintBoard();
+        }
+        else
+        {
+          Console.WriteLine("That spot is TAKEN!");
+          TakeTurn(player);
+        };
+      }
+      else
+      {
+        Console.WriteLine("Invalid move please choose a valid row (1, 2, 3) and a valid column (A, B, C)");
+        TakeTurn(player);
       }
     }
   }
