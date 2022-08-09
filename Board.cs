@@ -18,61 +18,73 @@ namespace TicTacToe
       currentRound = 0;
       rounds = aRounds;
       board = new string[,] {
-        {" ", " ", " "},
-        {" ", " ", " "},
-        {" ", " ", " "}
+        {"7", "8", "9"},
+        {"4", "5", "6"},
+        {"1", "2", "3"}
       };
       legalMoves = new string[] {
-        "1a", "1b", "1c",
-        "a1", "b1", "c1",
-        "2a", "2b", "2c",
-        "a2", "b2", "c2",
-        "3a", "3b", "3c",
-        "a3", "b3", "c3",
+        "1", "2", "3",
+        "4", "5", "6",
+        "7", "8", "9"
       };
     }
 
     public void PrintBoard()
     {
-      string border = "  ----------";
-      Console.WriteLine($"1 {board[0, 0]} | {board[0, 1]} | {board[0, 2]}");
+      string border = "----------";
+      Console.WriteLine($"{board[0, 0]} | {board[0, 1]} | {board[0, 2]}");
       Console.WriteLine(border);
-      Console.WriteLine($"2 {board[1, 0]} | {board[1, 1]} | {board[1, 2]}");
+      Console.WriteLine($"{board[1, 0]} | {board[1, 1]} | {board[1, 2]}");
       Console.WriteLine(border);
-      Console.WriteLine($"3 {board[2, 0]} | {board[2, 1]} | {board[2, 2]}");
-      Console.WriteLine("  A   B   C");
+      Console.WriteLine($"{board[2, 0]} | {board[2, 1]} | {board[2, 2]}");
     }
 
     public bool Place(string move, string piece)
     {
-      string[] moveAry = { move.Substring(0, 1), move.Substring(1, 1) };
-      Array.Sort(moveAry);
-      int row = Int32.Parse(moveAry[0]);
-      string c = moveAry[1];
-      int column = 0;
+      bool valid = true;
 
-      if (c == "a")
+      if (move == "7")
       {
-        column = 0;
+        board[0, 0] = piece;
       }
-      else if (c == "b")
+      else if (move == "8")
       {
-        column = 1;
+        board[0, 1] = piece;
       }
-      else if (c == "c")
+      else if (move == "9")
       {
-        column = 2;
+        board[0, 2] = piece;
       }
-
-      if (board[row - 1, column] == " ")
+      else if (move == "4")
       {
-        board[row - 1, column] = piece;
-        return true;
+        board[1, 0] = piece;
+      }
+      else if (move == "5")
+      {
+        board[1, 1] = piece;
+      }
+      else if (move == "6")
+      {
+        board[1, 2] = piece;
+      }
+      else if (move == "1")
+      {
+        board[2, 0] = piece;
+      }
+      else if (move == "2")
+      {
+        board[2, 1] = piece;
+      }
+      else if (move == "3")
+      {
+        board[2, 2] = piece;
       }
       else
       {
-        return false;
+        valid = false;
       }
+
+      return valid;
     }
 
     public void TakeTurn(Player player)
@@ -85,6 +97,10 @@ namespace TicTacToe
         if (Place(move, player.piece))
         {
           PrintBoard();
+          if (GameOver())
+          {
+            player.score += 1;
+          }
         }
         else
         {
@@ -94,7 +110,7 @@ namespace TicTacToe
       }
       else
       {
-        Console.WriteLine("Invalid move please choose a valid row (1, 2, 3) and a valid column (A, B, C)");
+        Console.WriteLine("Invalid move please choose a valid space: (1, 2, 3, 4, 5, 6, 7, 8)");
         TakeTurn(player);
       }
     }
@@ -140,7 +156,23 @@ namespace TicTacToe
       {
         end = true;
       }
+      // PrintBoard();
+      if (end)
+      {
+        currentRound++;
+        if (rounds != currentRound)
+        {
+          Console.WriteLine($"\n Next Round! \n");
+        }
 
+        board = new string[,] {
+          {"7", "8", "9"},
+          {"4", "5", "6"},
+          {"1", "2", "3"}
+        };
+        // PrintBoard();
+        return end;
+      }
       return end;
     }
   }

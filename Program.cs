@@ -11,12 +11,27 @@
 
       // player1.promptName();
       // player2.promptName();
+      board.PrintBoard();
+      Console.WriteLine($"\n{player1.name} VS {player2.name} \n");
 
-      Console.WriteLine($"{player1.name} VS {player2.name}");
-      // board.PrintBoard();
+      while (board.rounds != board.currentRound)
+      {
+        if (board.rounds == board.currentRound)
+        {
+          break;
+        }
+        Console.WriteLine($"{player1.name}: {player1.score} {player2.name}: {player2.score} Round {board.currentRound} of {board.rounds} \n");
 
-      board.TakeTurn(player1);
-      board.TakeTurn(player2);
+        board.TakeTurn(player1);
+
+        if (board.rounds == board.currentRound)
+        {
+          break;
+        }
+        Console.WriteLine($"{player1.name}: {player1.score} {player2.name}: {player2.score} Round {board.currentRound} of {board.rounds} \n");
+
+        board.TakeTurn(player2);
+      }
     }
   }
 }
