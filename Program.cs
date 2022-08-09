@@ -13,7 +13,8 @@
       // player2.promptName();
 
       Console.WriteLine($"{player1.name} VS {player2.name}");
-      board.PrintBoard();
+      // board.PrintBoard();
+
       board.TakeTurn(player1);
       board.TakeTurn(player2);
     }

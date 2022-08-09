@@ -11,20 +11,25 @@ namespace TicTacToe
     public string[,] board;
     public string[] legalMoves;
     public int rounds;
+    public int currentRound;
 
     public Board(int aRounds)
     {
+      currentRound = 0;
+      rounds = aRounds;
       board = new string[,] {
         {" ", " ", " "},
         {" ", " ", " "},
         {" ", " ", " "}
       };
       legalMoves = new string[] {
-        "1a", "1b", "1c", "a1", "b1", "c1",
-        "2a", "2b", "2c", "a2", "b2", "c2",
-        "3a", "3b", "3c", "a3", "b3", "c3",
+        "1a", "1b", "1c",
+        "a1", "b1", "c1",
+        "2a", "2b", "2c",
+        "a2", "b2", "c2",
+        "3a", "3b", "3c",
+        "a3", "b3", "c3",
       };
-      rounds = aRounds;
     }
 
     public void PrintBoard()
@@ -92,6 +97,51 @@ namespace TicTacToe
         Console.WriteLine("Invalid move please choose a valid row (1, 2, 3) and a valid column (A, B, C)");
         TakeTurn(player);
       }
+    }
+
+    public bool GameOver()
+    {
+      string[,] b = board;
+      bool end = false;
+      // Game ending moves
+
+      // Horizontal wins
+      if (b[0, 0] == b[0, 1] && b[0, 1] == b[0, 2])
+      {
+        end = true;
+      }
+      else if (b[1, 0] == b[1, 1] && b[1, 1] == b[1, 2])
+      {
+        end = true;
+      }
+      else if (b[2, 0] == b[2, 1] && b[2, 1] == b[2, 2])
+      {
+        end = true;
+      }
+      // Vertical wins
+      else if (b[0, 0] == b[1, 0] && b[1, 0] == b[2, 0])
+      {
+        end = true;
+      }
+      else if (b[0, 1] == b[1, 1] && b[1, 1] == b[2, 1])
+      {
+        end = true;
+      }
+      else if (b[0, 2] == b[1, 2] && b[1, 2] == b[2, 2])
+      {
+        end = true;
+      }
+      // Diagonal wins
+      else if (b[0, 0] == b[1, 1] && b[1, 1] == b[2, 2])
+      {
+        end = true;
+      }
+      else if (b[0, 2] == b[1, 1] && b[1, 1] == b[2, 0])
+      {
+        end = true;
+      }
+
+      return end;
     }
   }
 }
