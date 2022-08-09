@@ -9,23 +9,17 @@ namespace TicTacToe
   class Board
   {
     public string[,] board;
-    public string[] legalMoves;
     public int rounds;
     public int currentRound;
 
-    public Board(int aRounds)
+    public Board()
     {
       currentRound = 0;
-      rounds = aRounds;
+      rounds = 3;
       board = new string[,] {
         {"7", "8", "9"},
         {"4", "5", "6"},
         {"1", "2", "3"}
-      };
-      legalMoves = new string[] {
-        "1", "2", "3",
-        "4", "5", "6",
-        "7", "8", "9"
       };
     }
 
@@ -89,6 +83,7 @@ namespace TicTacToe
 
     public void TakeTurn(Player player)
     {
+      string[] legalMoves = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
       Console.Write($"{player.name} Please take your turn. ");
       var move = Console.ReadLine();
 

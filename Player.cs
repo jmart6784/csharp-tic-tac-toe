@@ -10,14 +10,12 @@ namespace TicTacToe
   {
     public string? name;
     public string piece;
-    public bool turn;
     public int score;
 
-    public Player(string aName, string aPiece, bool aTurn, int aScore)
+    public Player(string aName, string aPiece, int aScore)
     {
       name = aName;
       piece = aPiece;
-      turn = aTurn;
       score = aScore;
     }
 
