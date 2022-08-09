@@ -10,8 +10,9 @@ namespace TicTacToe
   {
     public string[,] board;
     public string[] legalMoves;
+    public int rounds;
 
-    public Board()
+    public Board(int aRounds)
     {
       board = new string[,] {
         {" ", " ", " "},
@@ -23,6 +24,7 @@ namespace TicTacToe
         "2a", "2b", "2c", "a2", "b2", "c2",
         "3a", "3b", "3c", "a3", "b3", "c3",
       };
+      rounds = aRounds;
     }
 
     public void PrintBoard()

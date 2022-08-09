@@ -7,7 +7,7 @@
       // 🇽 🅾️ ❌
       Player player1 = new Player("Player 1", "🇽", true, 0);
       Player player2 = new Player("Player 2", "🅾️", false, 0);
-      Board board = new Board();
+      Board board = new Board(3);
 
       // player1.promptName();
       // player2.promptName();
