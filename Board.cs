@@ -36,7 +36,7 @@ namespace TicTacToe
       Console.WriteLine(border);
       Console.WriteLine($"{board[1, 0]} | {board[1, 1]} | {board[1, 2]}");
       Console.WriteLine(border);
-      Console.WriteLine($"{board[2, 0]} | {board[2, 1]} | {board[2, 2]}");
+      Console.WriteLine($"{board[2, 0]} | {board[2, 1]} | {board[2, 2]} \n");
     }
 
     public bool Place(string move, string piece)
@@ -160,17 +160,17 @@ namespace TicTacToe
       if (end)
       {
         currentRound++;
-        if (rounds != currentRound)
-        {
-          Console.WriteLine($"\n Next Round! \n");
-        }
 
         board = new string[,] {
           {"7", "8", "9"},
           {"4", "5", "6"},
           {"1", "2", "3"}
         };
-        // PrintBoard();
+        if (rounds != currentRound)
+        {
+          Console.WriteLine($"Next Round! \n");
+          PrintBoard();
+        }
         return end;
       }
       return end;

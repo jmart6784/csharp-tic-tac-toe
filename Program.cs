@@ -12,7 +12,7 @@
       // player1.promptName();
       // player2.promptName();
       board.PrintBoard();
-      Console.WriteLine($"\n{player1.name} VS {player2.name} \n");
+      Console.WriteLine($"{player1.name} VS {player2.name} \n");
 
       while (board.rounds != board.currentRound)
       {
