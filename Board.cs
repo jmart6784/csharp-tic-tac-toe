@@ -99,10 +99,7 @@ namespace TicTacToe
         if (Place(lowered, player.piece))
         {
           PrintBoard();
-          if (GameOver())
-          {
-            player.score += 1;
-          }
+          GameOver(player);
         }
         else
         {
@@ -117,7 +114,7 @@ namespace TicTacToe
       }
     }
 
-    public bool GameOver()
+    public bool GameOver(Player player)
     {
       // If it is a draw end round, no player scores
       if (Draw())
@@ -167,7 +164,7 @@ namespace TicTacToe
       if (end)
       {
         currentRound++;
-
+        player.score += 1;
         board = new string[,] {
           {"7", "8", "9"},
           {"4", "5", "6"},
