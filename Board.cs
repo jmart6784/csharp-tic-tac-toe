@@ -75,6 +75,11 @@ namespace TicTacToe
       {
         board[2, 2] = piece;
       }
+      else if (move == "exit")
+      {
+        Console.WriteLine("\nThank you for playing!");
+        Environment.Exit(0);
+      }
       else
       {
         valid = false;
@@ -85,12 +90,13 @@ namespace TicTacToe
 
     public void TakeTurn(Player player)
     {
-      Console.Write($"{player.name} Please take your turn. ");
-      var move = Console.ReadLine();
+      Console.Write($"{player.name} Please take your turn. \nenter 'exit' to leave the game or 'c' to change name: ");
+      string move = Console.ReadLine();
+      string lowered = move.ToLower(); ;
 
-      if (legalMoves.Contains(move))
+      if (legalMoves.Contains(lowered) || lowered == "exit")
       {
-        if (Place(move, player.piece))
+        if (Place(lowered, player.piece))
         {
           PrintBoard();
           if (GameOver())
