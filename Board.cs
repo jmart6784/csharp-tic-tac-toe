@@ -11,6 +11,7 @@ namespace TicTacToe
     public string[,] board;
     public int rounds;
     public int currentRound;
+    public string[] legalMoves;
 
     public Board()
     {
@@ -21,6 +22,7 @@ namespace TicTacToe
         {"4", "5", "6"},
         {"1", "2", "3"}
       };
+      legalMoves = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
     }
 
     public void PrintBoard()
@@ -83,7 +85,6 @@ namespace TicTacToe
 
     public void TakeTurn(Player player)
     {
-      string[] legalMoves = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
       Console.Write($"{player.name} Please take your turn. ");
       var move = Console.ReadLine();
 
@@ -112,6 +113,11 @@ namespace TicTacToe
 
     public bool GameOver()
     {
+      // If it is a draw end round, no player scores
+      if (Draw())
+      {
+        return true;
+      }
       string[,] b = board;
       bool end = false;
       // Game ending moves
@@ -151,7 +157,7 @@ namespace TicTacToe
       {
         end = true;
       }
-      // PrintBoard();
+
       if (end)
       {
         currentRound++;
@@ -169,6 +175,38 @@ namespace TicTacToe
         return end;
       }
       return end;
+    }
+
+    public bool Draw()
+    {
+      int count = 0;
+
+      for (int i = 0; i < board.GetLength(0); i++)
+      {
+        for (int j = 0; j < board.GetLength(1); j++)
+        {
+          if (legalMoves.Contains(board[i, j]))
+          {
+            count++;
+          }
+        }
+      }
+
+      if (count == 0)
+      {
+        board = new string[,] {
+          {"7", "8", "9"},
+          {"4", "5", "6"},
+          {"1", "2", "3"}
+        };
+        PrintBoard();
+        Console.WriteLine("Draw!\n");
+        return true;
+      }
+      else
+      {
+        return false;
+      }
     }
   }
 }
