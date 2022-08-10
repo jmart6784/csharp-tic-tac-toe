@@ -21,8 +21,18 @@ namespace TicTacToe
 
     public void promptName()
     {
-      Console.WriteLine($"{name} please enter your name");
-      name = Console.ReadLine();
+      Console.Write($"{name} please enter your name ");
+      var input = Console.ReadLine();
+      string trimmed = String.Concat(input.Where(c => !Char.IsWhiteSpace(c)));
+
+      if (input == "" || input == null || trimmed == "")
+      {
+        promptName();
+      }
+      else
+      {
+        name = input;
+      }
     }
   }
 }
