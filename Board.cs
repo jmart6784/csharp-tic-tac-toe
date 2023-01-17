@@ -90,7 +90,7 @@ namespace TicTacToe
 
     public void TakeTurn(Player player)
     {
-      Console.Write($"{player.name} Please take your turn. \nenter 'exit' to leave the game or 'c' to change name: ");
+      Console.Write($"{player.name} Please take your turn. \nenter 'exit' to leave the game:");
       string move = Console.ReadLine();
       string lowered = move.ToLower(); ;
 
